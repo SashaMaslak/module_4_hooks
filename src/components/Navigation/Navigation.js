@@ -25,7 +25,7 @@ const Navigation = () => (
       className={styles.link}
       activeClassName={styles.activeLink}
     >
-      Counter
+      Counter (useReducer)
     </NavLink>
 
     <NavLink
@@ -41,7 +41,21 @@ const Navigation = () => (
       className={styles.link}
       activeClassName={styles.activeLink}
     >
-      Pokmons
+      Pokemons
+    </NavLink>
+    <NavLink
+      to="/skip-first-render"
+      className={styles.link}
+      activeClassName={styles.activeLink}
+    >
+      Skip first render
+    </NavLink>
+    <NavLink
+      to="/friends"
+      className={styles.link}
+      activeClassName={styles.activeLink}
+    >
+      Friends (useMemo)
     </NavLink>
   </nav>
 );

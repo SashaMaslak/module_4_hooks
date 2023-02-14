@@ -1,38 +1,38 @@
-import { useState, useEffect } from 'react';
+import { useReducer } from 'react';
 import styles from './Counter.module.css';
 
+function countReducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { ...state, count: state.count + action.payload };
+    case 'decrement':
+      return { ...state, count: state.count - action.payload };
+    default:
+      throw new Error(`Unsupported action type ${action.type}`);
+  }
+}
+
 export default function Counter() {
-  const [counterA, setCounterA] = useState(0);
-  const [counterB, setCounterB] = useState(0);
-
-  useEffect(() => {
-    console.log('Запускается Юз ефект');
-  }, [counterB]);
-
-  const handleCounterAIncrement = () => {
-    setCounterA(prevState => prevState + 1);
-  };
-  const handleCounterBIncrement = () => {
-    setCounterB(prevState => prevState + 1);
-  };
+  const [state, dispatch] = useReducer(countReducer, { count: 0 });
 
   return (
-    <>
+    <div className={styles.container}>
+      <p className={styles.value}>{state.count}</p>
       <button
         className={styles.btn}
         type="button"
-        onClick={handleCounterAIncrement}
+        onClick={() => dispatch({ type: 'decrement', payload: 1 })}
       >
-        Click counterA {counterA} tick
+        Decrease
       </button>
       <button
         className={styles.btn}
         type="button"
-        onClick={handleCounterBIncrement}
+        onClick={() => dispatch({ type: 'increment', payload: 1 })}
       >
-        Click counterB {counterB} tick
+        Increase
       </button>
-    </>
+    </div>
   );
 }
 

@@ -1,10 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 import AppBar from './components/AppBar/AppBar';
 import SignupForm from './components/SignupForm/SignupForm';
+import SkipEffectOnFirstRender from './components/SkipEffectOnFirstRender';
 import ColorPicker from './components/ColorPicker/ColorPicker';
 import Counter from './components/Counter/Counter';
 import Clock from './components/Clock/Clock';
-// import PokemonView from './views/PokemonView';
+import PokemonView from './views/PokemonView';
+import Friends from 'components/Friends';
 
 const colorPickerOptions = [
   { label: 'red', color: '#F44336' },
@@ -28,6 +30,10 @@ export default function App() {
     <div style={containerStyles}>
       <AppBar />
       <Routes>
+        <Route
+          path="/skip-first-render"
+          element={<SkipEffectOnFirstRender />}
+        ></Route>
         <Route path="/signup" element={<SignupForm />}></Route>
         <Route
           path="/colorpicker"
@@ -35,7 +41,8 @@ export default function App() {
         ></Route>
         <Route path="/counter" element={<Counter />}></Route>
         <Route path="/clock" element={<Clock />}></Route>
-        {/* <Route path="/pokemon" element={<PokemonView />}></Route> */}
+        <Route path="/pokemon" element={<PokemonView />}></Route>
+        <Route path="/friends" element={<Friends />}></Route>
       </Routes>
     </div>
   );
